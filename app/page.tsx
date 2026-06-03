@@ -44,6 +44,7 @@ export default function Home() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<SubmitStatus>({ type: "idle", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [celebrationCount, setCelebrationCount] = useState(0);
 
   const phoneDigits = useMemo(() => removeFrenchLeadingZero(onlyDigits(phone)), [phone]);
   const formattedPhone = useMemo(() => formatFrenchInternationalNumber(phoneDigits), [phoneDigits]);
@@ -111,6 +112,7 @@ export default function Home() {
       }
 
       setStatus({ type: "success", message: "Client envoyé à Make." });
+      setCelebrationCount((currentCount) => currentCount + 1);
     } catch {
       setStatus({
         type: "error",
@@ -123,6 +125,17 @@ export default function Home() {
 
   return (
     <main className="page-shell">
+      {celebrationCount > 0 ? (
+        <div className="celebration-animation" key={celebrationCount} aria-hidden="true">
+          <div className="celebration-badge">
+            <span className="celebration-check">✓</span>
+          </div>
+          {Array.from({ length: 10 }, (_, index) => (
+            <span className="confetti-dot" key={index} />
+          ))}
+        </div>
+      ) : null}
+
       <section className="form-panel" aria-labelledby="form-title">
         <div className="panel-header">
           <p className="eyebrow">Rappel expert énergie</p>
