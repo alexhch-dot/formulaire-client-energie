@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Formulaire client énergie</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="form-panel" aria-labelledby="form-title">
+        <div class="panel-header">
+          <p class="eyebrow">Rappel expert énergie</p>
+          <h1 id="form-title">Créer une demande client</h1>
+          <p class="intro">
+            Renseignez les informations du client pour préparer le choix d'offre
+            et le créneau de rappel.
+          </p>
+        </div>
+
+        <form id="client-form" novalidate>
+          <div class="field-grid">
+            <label class="field">
+              <span>Nom</span>
+              <input id="last-name" type="text" autocomplete="family-name" required placeholder="Durand" />
+              <small class="error-message" id="last-name-error"></small>
+            </label>
+
+            <label class="field">
+              <span>Prénom</span>
+              <input id="first-name" type="text" autocomplete="given-name" required placeholder="Camille" />
+              <small class="error-message" id="first-name-error"></small>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Numéro de téléphone</span>
+            <div class="phone-row">
+              <span class="country-code">+33</span>
+              <input
+                id="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel"
+                required
+                maxlength="14"
+                placeholder="6 12 34 56 78"
+                aria-describedby="phone-help phone-error"
+              />
+            </div>
+            <small id="phone-help" class="help-text">
+              France préselectionnée. Entrez uniquement les chiffres, sans le 0 initial si possible.
+            </small>
+            <small class="error-message" id="phone-error"></small>
+          </label>
+
+          <button class="primary-button" type="submit">Valider le client</button>
+        </form>
+      </section>
+
+      <aside class="summary-panel" aria-labelledby="summary-title">
+        <h2 id="summary-title">Aperçu client</h2>
+        <dl>
+          <div>
+            <dt>Nom</dt>
+            <dd id="summary-last-name">-</dd>
+          </div>
+          <div>
+            <dt>Prénom</dt>
+            <dd id="summary-first-name">-</dd>
+          </div>
+          <div>
+            <dt>Téléphone</dt>
+            <dd id="summary-phone">-</dd>
+          </div>
+        </dl>
+        <p id="success-message" class="success-message" hidden>
+          Client enregistré. Prochaine étape: choix de l'offre énergie.
+        </p>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
